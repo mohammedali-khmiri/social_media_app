@@ -59,7 +59,7 @@ const Stories = () => {
 				</div>
 			</div>
 			{stories.map((story) => (
-				<div className="story">
+				<div className="story" key={story.id}>
 					<div className="div-hover" />
 					<img src={story.img} alt="" />
 					<span>{story.name}</span>
