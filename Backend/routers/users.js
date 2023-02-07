@@ -7,7 +7,7 @@ const {
 	followUser,
 	unfollowUser,
 } = require("../controllers/user.controller");
-
+const { verifyToken, isSameUser, isAdmin } = require("../middlewares");
 
 //param user
 router.param("user", async (req, res, next, id) => {
@@ -24,22 +24,19 @@ router.param("user", async (req, res, next, id) => {
 	}
 });
 
-
-
-
 //update user router
-router.put("/:user", updateUser);
+router.put("/:user", verifyToken, isSameUser, updateUser);
 
 //delete user router
-router.delete("/:user", deleteUser);
+router.delete("/:user", verifyToken, isSameUser, deleteUser);
 
 //get user router
-router.get("/:user", getUser);
+router.get("/:user", verifyToken, getUser);
 
 //follow user router
-router.put("/:user/follow", followUser);
+router.put("/:user/follow", verifyToken, followUser);
 
 //unfollow user router
-router.put("/:user/unfollow", unfollowUser);
+router.put("/:user/unfollow", verifyToken, unfollowUser);
 
 module.exports = router;

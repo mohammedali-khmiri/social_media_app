@@ -12,6 +12,8 @@ const {
 const { verifyToken, isPostOwner } = require("../middlewares");
 
 //param post
+/* A middleware that is executed before the other middlewares. It is used to find the post by id and
+attach it to the request object. */
 router.param("post", async (req, res, next, id) => {
 	try {
 		const post = await Post.findById(id);
@@ -36,12 +38,12 @@ router.put("/:post", verifyToken, isPostOwner, updatePost);
 router.delete("/:post", verifyToken, isPostOwner, deletePost);
 
 //like/ dislike a post router
-router.put("/:post/like", likePost);
+router.put("/:post/like", verifyToken, likePost);
 
 //get a post router
-router.get("/:post", getPost);
+router.get("/:post", verifyToken, getPost);
 
 //get all post of my followings
-router.get("/timeline/all", getTimeline);
+router.get("/timeline/all", verifyToken, getTimeline);
 
 module.exports = router;

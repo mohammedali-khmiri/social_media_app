@@ -22,7 +22,7 @@ const Register = async (req, res) => {
 		res.status(200).json(user);
 	} catch (error) {
 		/* This is a catch block. It is used to catch any errors that may occur in the try block. */
-		res.status(500).json(error);
+		res.status(500).json(error.message);
 	}
 };
 
@@ -38,7 +38,7 @@ const Login = async (req, res) => {
 			req.body.password,
 			user.password
 		);
-		!validPassword && res.status(400).json("wrong password");
+		!validPassword && res.status(400).json("Wrong Password");
 
 		/* Creating a token for the user. */
 		const accessToken = jwt.sign(

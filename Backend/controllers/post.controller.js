@@ -19,6 +19,7 @@ const createPost = async (req, res) => {
 //UPDATE A POST
 const updatePost = async (req, res) => {
 	const idPost = req.post.id;
+
 	const post = await Post.findById(idPost);
 
 	await post.updateOne({ $set: req.body });
@@ -37,16 +38,17 @@ const deletePost = async (req, res) => {
 	}
 };
 
-//LIKE A POST
+//LIKE / DISLIKE A POST
 const likePost = async (req, res) => {
 	const idPost = req.post.id;
+	const currentUserId = req.verifiedUser._id;
 	try {
 		const post = await Post.findById(idPost);
-		if (!post.likes.includes(req.body.userId)) {
-			await post.updateOne({ $push: { likes: req.body.userId } });
+		if (!post.likes.includes(currentUserId)) {
+			await post.updateOne({ $push: { likes: currentUserId } });
 			res.status(200).json("Post has been liked");
 		} else {
-			await post.updateOne({ $pull: { likes: req.body.userId } });
+			await post.updateOne({ $pull: { likes: currentUserId } });
 			res.status(200).json("Post has been disliked");
 		}
 	} catch (error) {
@@ -63,23 +65,24 @@ const getPost = async (req, res) => {
 
 //GET ALL POSTS
 const getTimeline = async (req, res) => {
+	const currentUserId = req.verifiedUser._id;
 	try {
 		/* Getting the current user from the database. */
-		const currentUser = await User.findById(req.body.userId);
+		const currentUser = await User.findById(currentUserId);
 
 		/* Getting all the posts of the current user. */
-		const userPost = await Post.find({ userId: currentUser._id });
+		const userPost = await Post.find({ author: currentUserId });
 
 		/* A way to get all the posts of the users that the current user is following. */
 		const friendPost = await Promise.all(
 			currentUser.followings.map((friendId) => {
-				return Post.find({ userId: friendId });
+				return Post.find({ author: friendId });
 			})
 		);
 
 		res.status(200).json(userPost.concat(...friendPost));
 	} catch (error) {
-		res.status(500).json(error);
+		res.status(500).json(error.message);
 	}
 };
 
