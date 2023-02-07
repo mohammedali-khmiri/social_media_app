@@ -1,5 +1,5 @@
-import Posts from "../../posts/Posts";
-import Stories from "../../stories/Stories";
+import Posts from "../../components/posts/Posts";
+import Stories from "../../components/stories/Stories";
 import "./home.scss";
 
 const Home = () => {
