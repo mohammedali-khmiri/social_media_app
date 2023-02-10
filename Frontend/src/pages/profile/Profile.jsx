@@ -27,12 +27,10 @@ const Profile = () => {
 				/>
 				<div className="changePic">
 					<img
-					src="https://cdn.icon-icons.com/icons2/37/PNG/512/slr_camera_application_slr_3037.png"
-					alt=""
-					
-				/>
+						src="https://cdn.icon-icons.com/icons2/37/PNG/512/slr_camera_application_slr_3037.png"
+						alt=""
+					/>
 				</div>
-				
 			</div>
 			<div className="profileContainer">
 				<div className="userInfo">
@@ -85,7 +83,6 @@ const Profile = () => {
 						</div>
 						<div className="item">
 							<button>
-								{" "}
 								<EmailOutlinedIcon /> Message
 							</button>
 						</div>

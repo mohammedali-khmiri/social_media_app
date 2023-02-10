@@ -3,7 +3,7 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 // register
-const Register = async (req, res) => {
+Register = async (req, res) => {
 	try {
 		/* generate new password. */
 		const salt = await bcrypt.genSalt(10);
