@@ -22,24 +22,40 @@
 				left: 70px;
 				top: 270px;
 				border: 5px solid white;
+
+				@include mobile {
+					right: 0px;
+					left: 0px;
+					margin: auto;
+					top: 190px;
+					height: 150px;
+					width: 150px;
+				}
 			}
 			.changePic {
 				border-radius: 50%;
 				position: absolute;
-				top: 410px;
+				top: 400px;
 				left: 230px;
-				padding: 5px;
+				padding: 10px;
 				background-color: white;
 				cursor: pointer;
 				transition: all 0.2s ease;
+
+				
+				@include mobile {
+					top: 295px;
+					left: 230px;
+					padding: 5px;
+				}
 
 				&:hover {
 					transform: scale(1.1);
 					background-color: rgb(255, 255, 255);
 				}
 				img {
-					height: 35px;
-					width: 35px;
+					height: 25px;
+					width: 30px;
 					object-fit: cover;
 				}
 			}
@@ -48,6 +64,11 @@
 		.profileContainer {
 			background-color: themed("bgSoft");
 			padding: 20px 60px;
+
+			@include mobile {
+				padding: 10px;
+			}
+
 			.userInfo {
 				display: flex;
 				align-items: center;
@@ -61,6 +82,13 @@
 				-moz-box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
 				box-shadow: 0px 0px 25px -10px rgba(0, 0, 0, 0.38);
 
+				@include mobile {
+					flex-direction: column;
+					height: 30vh;
+					padding: 20px;
+					margin-top: 20px;
+				}
+
 				.info {
 					flex: 6;
 					display: flex;
@@ -69,6 +97,12 @@
 					justify-content: flex-start;
 					margin-left: 220px;
 					gap: 20px;
+
+					@include mobile {
+						align-items: center;
+						justify-content: center;
+						margin-left: 0px;
+					}
 					.name {
 						font-size: 30px;
 						font-weight: 500;
@@ -113,7 +147,7 @@
 							background-color: #2375e1fe;
 							border-radius: 5px;
 							color: white;
-                            font-weight: 500;
+							font-weight: 500;
 							cursor: pointer;
 							&:hover {
 								background-color: #2375e1e0;
@@ -122,7 +156,7 @@
 
 						.threeDot {
 							color: themed("textColor");
-                            cursor: pointer;
+							cursor: pointer;
 						}
 					}
 				}

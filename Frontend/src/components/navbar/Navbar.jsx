@@ -8,13 +8,15 @@ import NotificationsNoneOutlinedIcon from "@mui/icons-material/NotificationsNone
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import { Link } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
 import { AuthContext } from "../../context/authContext";
 
 const Navbar = () => {
 	const { darkMode, toggle } = useContext(DarkModeContext);
 	const { currentUser } = useContext(AuthContext);
+
+	const [searchOpen, setSearchOpen] = useState(false);
 
 	return (
 		<div className="navbar">
@@ -35,11 +37,22 @@ const Navbar = () => {
 
 				<AppsOutlinedIcon style={{ cursor: "pointer" }} />
 				<div className="search">
-					<SearchOutlinedIcon style={{ cursor: "pointer" }} />
-					<input
-						type="text"
-						placeholder="Search for friend, post or video..."
+					<SearchOutlinedIcon
+						style={{ cursor: "pointer" }}
+						onClick={() => setSearchOpen(!searchOpen)}
 					/>
+					{searchOpen ? (
+						<input
+							style={{ display: "block" }}
+							type="text"
+							placeholder="Search for friend, post or video..."
+						/>
+					) : (
+						<input
+							type="text"
+							placeholder="Search for friend, post or video..."
+						/>
+					)}
 				</div>
 			</div>
 			<div className="right">
