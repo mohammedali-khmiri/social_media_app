@@ -9,9 +9,16 @@
 		max-width: 850px;
 		height: 250px;
 
+		&::-webkit-scrollbar {
+			display: none;
+		}
+		@include tablet {
+			height: 200px;
+		}
 		@include mobile {
-			height: 80px;
+			height: 70px;
 			justify-content: space-between;
+			
 		}
 
 		.myStory {
@@ -146,8 +153,6 @@
 
 				@include mobile {
 					display: none;
-					
-					
 				}
 			}
 		}

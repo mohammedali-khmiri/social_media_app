@@ -48,7 +48,7 @@
 						display: none;
 						position: absolute;
 						top: 53px;
-						left: 0px;
+						left: 35px;
 						width: 100%;
 						background-color: themed("bg");
 						border: 0.5px solid lightgray;
@@ -56,6 +56,10 @@
 						// border-top: none;
 						padding: 10px;
 						transition: all 0.5s linear;
+					}
+
+					@include tablet {
+						width: 230px;
 					}
 				}
 			}
@@ -65,6 +69,8 @@
 			display: flex;
 			align-items: center;
 			gap: 20px;
+
+			
 
 			@include mobile {
 				display: none;
@@ -85,6 +91,10 @@
 				}
 
 				span {
+
+					@include tablet {
+						display: none;
+					}
 				}
 			}
 		}

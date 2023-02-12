@@ -30,7 +30,8 @@ Register = async (req, res) => {
 const Login = async (req, res) => {
 	try {
 		const user = await User.findOne({ email: req.body.email });
-		!user && res.status(404).json("User not found");
+		if (!user) return res.status(404).json("User not found");
+		
 
 		/* It is checking if the password is valid. If it is not valid, it
 		will send a response back to the client. */
