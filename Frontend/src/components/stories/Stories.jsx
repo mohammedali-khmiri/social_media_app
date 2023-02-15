@@ -22,11 +22,11 @@ const Stories = () => {
 			name: "bella bn",
 			img: "https://images.pexels.com/photos/4691197/pexels-photo-4691197.jpeg?auto=compress&cs=tinysrgb&w=600",
 		},
-		// {
-		// 	id: 4,
-		// 	name: "eya bn",
-		// 	img: "https://images.pexels.com/photos/7034219/pexels-photo-7034219.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
-		// },
+		{
+			id: 4,
+			name: "eya bn",
+			img: "https://images.pexels.com/photos/7034219/pexels-photo-7034219.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
+		},
 		// {
 		// 	id: 5,
 		// 	name: "hazem ma",
