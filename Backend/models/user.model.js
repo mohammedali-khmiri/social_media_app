@@ -34,7 +34,7 @@ const userSchema = new mongoose.Schema(
 			type: Boolean,
 			default: false,
 		},
-		token: { type: String },
+		
 		desc: {
 			type: String,
 			max: 50,
@@ -51,6 +51,7 @@ const userSchema = new mongoose.Schema(
 			type: Number,
 			enum: [1, 2, 3],
 		},
+		token: { type: String },
 		birthDate: Date,
 	},
 	{ timestamps: true }
