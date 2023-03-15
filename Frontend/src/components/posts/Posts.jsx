@@ -9,7 +9,7 @@ const Posts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       const res = await axios.get("posts/timeline/all");
-      console.log(res);
+      setPosts(res.data)
     };
     fetchPosts();
   }, []);

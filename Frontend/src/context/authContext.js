@@ -10,7 +10,8 @@ export const AuthContextProvider = ({ children }) => {
 	const login = () => {
 		setCurrentUser({
 			id: "63e1791481e36b6770e0b052",
-			firstNameame: "med ali",
+			firstName: "hazem",
+			lastName: "khmiri",
 			img: "https://images.pexels.com/photos/5725442/pexels-photo-5725442.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load",
 		});
 	};
