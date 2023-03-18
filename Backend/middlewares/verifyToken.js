@@ -2,7 +2,7 @@ const jwt = require("jsonwebtoken");
 
 module.exports = (req, res, next) => {
 	/* Getting the token from the header. */
-	const token = req.header("access_token");
+	const token = req.cookies.accessToken;
 
 	/* This is a middleware function that checks if the token is provided or not. If the token is
 	provided, it verifies the token and if the token is not provided, it returns an error message. */
