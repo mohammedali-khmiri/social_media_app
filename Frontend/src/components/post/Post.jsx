@@ -14,11 +14,12 @@ const Post = ({ post }) => {
   const [commentOpen, setCommentOpen] = useState(false);
   const [user, setUser] = useState({});
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  console.log(user);
 
   useEffect(() => {
     const fetchUser = async () => {
-      const res = await axios.get(`users/${post.userId}`);
-      setUser(res.data)
+      const res = await axios.get(`users/${post.author}`);
+      setUser(res.data);
     };
     fetchUser();
   }, []);
@@ -31,13 +32,18 @@ const Post = ({ post }) => {
       <div className="container">
         <div className="user">
           <div className="user-info">
-            <img src={post.profilePic} alt="" />
+            <img
+              src={user.profilePicture || PF + "users/no_profile.png"}
+              alt=""
+            />
             <div className="details">
               <Link
-                to={`/profile/${post.userId}`}
+                to={`/profile/${post.author}`}
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                <span className="author">{post.name}</span>
+                <span className="author">
+                  {user.firstName + " " + user.lastName}
+                </span>
               </Link>
               <span className="date">1 min ago</span>
             </div>
@@ -46,7 +52,7 @@ const Post = ({ post }) => {
         </div>
         <div className="content">
           <p>{post.desc}</p>
-          {post.img && <img src={PF + post.img} alt="" />}
+          {post.img && <img src={`${PF}posts/${post.img}`} alt="" />}
         </div>
         <div className="info">
           <div className="item">

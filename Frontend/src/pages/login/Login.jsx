@@ -1,30 +1,24 @@
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../context/authContext";
+import { login } from "../../apiCalls/authRequests";
+import { AuthContext } from "../../context/auth/AuthContext";
 import "./login.scss";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const email = useRef();
+  const password = useRef();
+  const { user, isLoading, error, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-  });
-
-  const handleChange = (e) => {
-    setInputs((prev) => ({ ...prev, [e.target.name]: e.target.value }));
-  };
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    try {
-      await login(inputs);
-      navigate("/");
-    } catch (error) {
-      console.log(error);
-    }
+    login(
+      { email: email.current.value, password: password.current.value },
+      dispatch,
+      navigate
+    );
   };
-
+  console.log(user);
   return (
     <div className="login">
       <div className="card">
@@ -43,19 +37,16 @@ const Login = () => {
         <div className="right">
           <h1>Login</h1>
           <form action="">
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              onChange={handleChange}
-            />
+            <input type="email" placeholder="Email" name="email" ref={email} />
             <input
               type="password"
               placeholder="Password"
               name="password"
-              onChange={handleChange}
+              ref={password}
             />
-            <button onClick={handleLogin}>Login</button>
+            <button onClick={handleLogin} disabled={isLoading}>
+              {isLoading ? "Loading" : "Login"}
+            </button>
           </form>
         </div>
       </div>

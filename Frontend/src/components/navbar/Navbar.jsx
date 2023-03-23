@@ -10,11 +10,9 @@ import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import { DarkModeContext } from "../../context/darkModeContext";
-import { AuthContext } from "../../context/authContext";
 
 const Navbar = () => {
 	const { darkMode, toggle } = useContext(DarkModeContext);
-	const { currentUser } = useContext(AuthContext);
 
 	const [searchOpen, setSearchOpen] = useState(false);
 
@@ -60,8 +58,8 @@ const Navbar = () => {
 				<EmailOutlinedIcon style={{ cursor: "pointer" }} />
 				<NotificationsNoneOutlinedIcon style={{ cursor: "pointer" }} />
 				<div className="user">
-					<img src={currentUser.img} alt="" />
-					<span>{currentUser.name}</span>
+					<img src="" alt="" />
+					<span>user</span>
 				</div>
 			</div>
 		</div>

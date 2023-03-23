@@ -1,9 +1,7 @@
 import "./stories.scss";
 import { useContext } from "react";
-import { AuthContext } from "../../context/authContext";
 
 const Stories = () => {
-	const { currentUser } = useContext(AuthContext);
 
 	//Temporary data
 	const stories = [
@@ -51,7 +49,7 @@ const Stories = () => {
 	return (
 		<div className="stories">
 			<div className="myStory">
-				<img src={currentUser.img} alt="" />
+				<img src="" alt="" />
 				<span>Create a story</span>
 				<div className="grey-div" />
 				<div className="plus-button">
