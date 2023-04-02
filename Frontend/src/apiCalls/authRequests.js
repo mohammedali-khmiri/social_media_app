@@ -12,14 +12,14 @@ export const login = async (userCredential, dispatch, navigate) => {
   }
 };
 
-export const Register = async (userCredential, dispatch, navigate) => {
-  dispatch({ type: "R_START" });
+export const registerRequest = async (userCredential, dispatch, navigate) => {
+  dispatch({ type: "REGISTER_START" });
   try {
-    const res = await axios.post("auth/login", userCredential);
+    const res = await axios.post("auth/register", userCredential);
     // if is it successful
-    dispatch({ type: "Register_SUCCESS", payload: res.data });
-    navigate("/");
+    dispatch({ type: "REGISTER_SUCCESS", payload: res.data });
+    navigate("/login");
   } catch (error) {
-    dispatch({ type: "LOGIN_FAILURE", payload: error });
+    dispatch({ type: "REGISTER_FAILURE", payload: error });
   }
 };

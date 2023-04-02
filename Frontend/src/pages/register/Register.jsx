@@ -1,21 +1,29 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./register.scss";
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { AuthContext } from "../../context/auth/AuthContext";
+import { registerRequest } from "../../apiCalls/authRequests";
 
 const Register = () => {
   const fullName = useRef();
   const email = useRef();
   const password = useRef();
   const confirmPassword = useRef();
+  const { user, isLoading, error, dispatch } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
     if (password.current.value !== confirmPassword.current.value) {
       confirmPassword.current.setCustomValidity("Passwords don't match!");
-    } else {
-      try {
-      } catch (error) {}
     }
+    const user = {
+      fullName: fullName.current.value,
+      email: email.current.value,
+      password: password.current.value,
+      confirmPassword: confirmPassword.current.value,
+    };
+    registerRequest(user, dispatch, navigate);
   };
   return (
     <div className="register">
