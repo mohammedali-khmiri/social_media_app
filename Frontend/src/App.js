@@ -7,6 +7,7 @@ import LeftBar from "./components/leftBar/LeftBar";
 import RightBar from "./components/rightBar/RightBar";
 import { useContext, useState } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
+import { AuthContext } from "./context/auth/AuthContext";
 import {
   createBrowserRouter,
   Navigate,
@@ -16,6 +17,7 @@ import {
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
+  const { user } = useContext(AuthContext);
 
   /**
    * Layout is a function that returns a div that contains a Navbar, a LeftBar, an Outlet, and a
@@ -43,17 +45,21 @@ function App() {
    * @returns The children of the ProtectedRoute component.
    */
   const ProtectedRoute = ({ children }) => {
-    // if (!currentUser) {
-    //   return <Navigate to="/login" />;
-    // }
-    // return children;
+    if (!user) {
+      return <Navigate to="/login" />;
+    }
+    return children;
   };
 
   /* Creating a router object that contains the routes for the application. */
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      element: (
+        <ProtectedRoute>
+          <Layout />
+        </ProtectedRoute>
+      ),
       children: [
         {
           path: "/",
