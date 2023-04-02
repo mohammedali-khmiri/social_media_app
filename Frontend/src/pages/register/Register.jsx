@@ -58,7 +58,7 @@ const Register = () => {
               ref={confirmPassword}
               required
             />
-            <button type="submit">Register</button>
+            <button type="submit">{isLoading ? "Loading" : "Register"}</button>
           </form>
         </div>
       </div>

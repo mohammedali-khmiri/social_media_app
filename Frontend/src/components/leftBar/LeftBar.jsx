@@ -13,14 +13,24 @@ import Tutorials from "../../assets/video-tutorial.png";
 import Courses from "../../assets/online-education.png";
 import Fund from "../../assets/donation.png";
 import { useContext } from "react";
+import { AuthContext } from "../../context/auth/AuthContext";
 
 const LeftBar = () => {
+  const { user } = useContext(AuthContext);
+  const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   return (
     <div className="leftBar">
       <div className="container">
         <div className="menu">
           <div className="user">
-            <img src="" alt="" />
+            <img
+              src={
+                user.profilePicture
+                  ? PF + user.profilePicture
+                  : PF + "users/no_profile.png"
+              }
+              alt=""
+            />
             <span>user</span>
           </div>
           <div className="item">
